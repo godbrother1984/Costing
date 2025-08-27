@@ -50,8 +50,64 @@
     { "id": "CUST-004", "name": "บริษัท DEF จำกัด" },
     { "id": "CUST-005", "name": "บริษัท Premium Auto Part" }
   ],
-  "fab_costs": [],
-  "standard_prices": [],
-  "selling_factors": [],
-  "exchange_rates": []
+  "fab_costs": [
+    {
+      "id": 1,
+      "work_type": "การตัด (Cutting)",
+      "cost": 150.00,
+      "unit": "PCS",
+      "description": "ตัดด้วย Laser"
+    },
+    {
+      "id": 2,
+      "work_type": "การเชื่อม (Welding)",
+      "cost": 200.00,
+      "unit": "M",
+      "description": "เชื่อม TIG"
+    }
+  ],
+  "standard_prices": [
+    {
+      "id": 1,
+      "rm_code": "RM-SCREW-M6",
+      "rm_name": "สกรูสแตนเลส M6",
+      "price": 15.50,
+      "unit": "PCS"
+    },
+    {
+      "id": 2,
+      "rm_code": "RM-WASHER-M6",
+      "rm_name": "แหวนรอง M6",
+      "price": 2.25,
+      "unit": "PCS"
+    }
+  ],
+  "selling_factors": [
+    {
+      "id": 1,
+      "pattern": "Standard",
+      "factor": 1.25,
+      "description": "การผลิตมาตรฐาน"
+    },
+    {
+      "id": 2,
+      "pattern": "Custom",
+      "factor": 1.45,
+      "description": "การผลิตตามสั่ง"
+    }
+  ],
+  "exchange_rates": [
+    {
+      "id": 1,
+      "currency_pair": "USD/THB",
+      "rate": 36.55,
+      "updated_at": "27/08/2568 14:30"
+    },
+    {
+      "id": 2,
+      "currency_pair": "EUR/THB",
+      "rate": 38.75,
+      "updated_at": "27/08/2568 14:30"
+    }
+  ]
 }

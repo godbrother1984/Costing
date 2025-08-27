@@ -62,33 +62,125 @@
 
     <div id="fab-cost" class="master-tab-content" style="display: none;">
         <h3>🔧 ต้นทุน Fabrication</h3>
-        <!-- Content for Fab Cost -->
+         <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ประเภทงาน</th>
+                        <th>ต้นทุน (THB)</th>
+                        <th>หน่วย</th>
+                        <th>รายละเอียด</th>
+                        <th>จัดการ</th>
+                    </tr>
+                </thead>
+                <tbody id="fab-costs-table-body"></tbody>
+            </table>
+        </div>
+        <div class="card" style="margin-top: 25px;">
+            <h3>➕ เพิ่มต้นทุน Fabrication</h3>
+            <form id="add-fab-cost-form" onsubmit="event.preventDefault(); addFabCost();">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 15px;">
+                    <div class="form-group"><label for="fab-work-type" class="form-label">ประเภทงาน</label><input type="text" id="fab-work-type" class="form-control" required></div>
+                    <div class="form-group"><label for="fab-cost-val" class="form-label">ต้นทุน</label><input type="number" id="fab-cost-val" class="form-control" step="0.01" required></div>
+                    <div class="form-group"><label for="fab-unit" class="form-label">หน่วย</label><input type="text" id="fab-unit" class="form-control" required></div>
+                    <div class="form-group"><label for="fab-desc" class="form-label">รายละเอียด</label><input type="text" id="fab-desc" class="form-control"></div>
+                </div>
+                <button type="submit" class="btn btn-primary">💾 บันทึก</button>
+            </form>
+        </div>
     </div>
 
     <div id="std-prices" class="master-tab-content" style="display: none;">
         <h3>📋 ราคามาตรฐานวัตถุดิบ</h3>
-        <!-- Content for Standard Prices -->
+         <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>รหัสวัตถุดิบ</th>
+                        <th>ชื่อวัตถุดิบ</th>
+                        <th>ราคา (THB)</th>
+                        <th>หน่วย</th>
+                        <th>จัดการ</th>
+                    </tr>
+                </thead>
+                <tbody id="std-prices-table-body"></tbody>
+            </table>
+        </div>
+        <div class="card" style="margin-top: 25px;">
+            <h3>➕ เพิ่มราคามาตรฐาน</h3>
+            <form id="add-std-price-form" onsubmit="event.preventDefault(); addStandardPrice();">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 15px;">
+                    <div class="form-group"><label for="std-rm-code" class="form-label">รหัสวัตถุดิบ</label><input type="text" id="std-rm-code" class="form-control" required></div>
+                    <div class="form-group"><label for="std-rm-name" class="form-label">ชื่อวัตถุดิบ</label><input type="text" id="std-rm-name" class="form-control" required></div>
+                    <div class="form-group"><label for="std-price" class="form-label">ราคา</label><input type="number" id="std-price" class="form-control" step="0.01" required></div>
+                    <div class="form-group"><label for="std-unit" class="form-label">หน่วย</label><input type="text" id="std-unit" class="form-control" required></div>
+                </div>
+                <button type="submit" class="btn btn-primary">💾 บันทึก</button>
+            </form>
+        </div>
     </div>
 
     <div id="factors" class="master-tab-content" style="display: none;">
         <h3>🧮 ตัวคูณราคาขาย (Selling Factors)</h3>
-        <!-- Content for Selling Factors -->
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Pattern</th>
+                        <th>ตัวคูณ</th>
+                        <th>รายละเอียด</th>
+                        <th>จัดการ</th>
+                    </tr>
+                </thead>
+                <tbody id="factors-table-body"></tbody>
+            </table>
+        </div>
+        <div class="card" style="margin-top: 25px;">
+            <h3>➕ เพิ่มตัวคูณราคาขาย</h3>
+            <form id="add-factor-form" onsubmit="event.preventDefault(); addSellingFactor();">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 15px;">
+                    <div class="form-group"><label for="factor-pattern" class="form-label">Pattern</label><input type="text" id="factor-pattern" class="form-control" required></div>
+                    <div class="form-group"><label for="factor-value" class="form-label">ตัวคูณ</label><input type="number" id="factor-value" class="form-control" step="0.01" required></div>
+                    <div class="form-group"><label for="factor-desc" class="form-label">รายละเอียด</label><input type="text" id="factor-desc" class="form-control"></div>
+                </div>
+                <button type="submit" class="btn btn-primary">💾 บันทึก</button>
+            </form>
+        </div>
     </div>
 
     <div id="exchange" class="master-tab-content" style="display: none;">
         <h3>💱 อัตราแลกเปลี่ยน</h3>
-        <!-- Content for Exchange Rates -->
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>คู่เงิน</th>
+                        <th>อัตราแลกเปลี่ยน</th>
+                        <th>อัพเดทล่าสุด</th>
+                        <th>จัดการ</th>
+                    </tr>
+                </thead>
+                <tbody id="exchange-rates-table-body"></tbody>
+            </table>
+        </div>
+         <div class="card" style="margin-top: 25px;">
+            <h3>➕ เพิ่มอัตราแลกเปลี่ยน</h3>
+            <form id="add-exchange-rate-form" onsubmit="event.preventDefault(); addExchangeRate();">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 15px;">
+                    <div class="form-group"><label for="exchange-pair" class="form-label">คู่เงิน (เช่น USD/THB)</label><input type="text" id="exchange-pair" class="form-control" required></div>
+                    <div class="form-group"><label for="exchange-rate" class="form-label">อัตราแลกเปลี่ยน</label><input type="number" id="exchange-rate" class="form-control" step="0.0001" required></div>
+                </div>
+                <button type="submit" class="btn btn-primary">💾 บันทึก</button>
+            </form>
+        </div>
     </div>
 
-    <!-- UPDATED: Customer Groups View with 2-column layout -->
     <div id="customer-groups" class="master-tab-content" style="display: none;">
         <h3>👥 กลุ่มลูกค้า (Customer Groups)</h3>
         <div class="master-data-grid">
-            <!-- Left Column: Group List -->
             <div class="group-list-container">
                 <h4>รายการกลุ่ม</h4>
                 <div id="customer-groups-list">
-                    <!-- Group list items will be loaded here by JS -->
                 </div>
                 <div class="card" style="margin-top: 20px;">
                     <h5>➕ เพิ่มกลุ่มใหม่</h5>
@@ -109,7 +201,6 @@
                     </form>
                 </div>
             </div>
-            <!-- Right Column: Group Details -->
             <div id="group-details-view" class="group-details-container" style="display: none;">
                 <h4 id="group-details-title">รายละเอียดกลุ่ม</h4>
                 <p id="group-details-desc"></p>
@@ -123,7 +214,6 @@
                             </tr>
                         </thead>
                         <tbody id="group-customer-list">
-                            <!-- Customer list for the selected group -->
                         </tbody>
                     </table>
                 </div>

@@ -29,49 +29,41 @@ $action = $_GET['action'] ?? '';
 
 switch ($action) {
     // Request Actions
-    case 'get_requests':
-        getRequests($requestDbFile);
-        break;
-    case 'get_request_detail':
-        getRequestDetail($requestDbFile);
-        break;
-    case 'save_draft':
-        saveDraft($requestDbFile);
-        break;
+    case 'get_requests': getRequests($requestDbFile); break;
+    case 'get_request_detail': getRequestDetail($requestDbFile); break;
+    case 'save_draft': saveDraft($requestDbFile); break;
     
     // D365 Simulation Actions
-    case 'search_d365':
-        searchD365();
-        break;
-    case 'search_rm':
-        searchRawMaterial($masterDbFile);
-        break;
-    case 'search_customer':
-        searchCustomer($masterDbFile);
-        break;
+    case 'search_d365': searchD365(); break;
+    case 'search_rm': searchRawMaterial($masterDbFile); break;
+    case 'search_customer': searchCustomer($masterDbFile); break;
     
     // Calculation Action
-    case 'calculate_price':
-        calculatePrice();
-        break;
+    case 'calculate_price': calculatePrice(); break;
 
     // Master Data Actions
-    case 'get_lme_prices':
-        getLmePrices($masterDbFile);
-        break;
-    case 'add_lme_price':
-        addLmePrice($masterDbFile);
-        break;
-    case 'get_customer_groups':
-        getCustomerGroups($masterDbFile);
-        break;
-    case 'add_customer_group':
-        addCustomerGroup($masterDbFile);
-        break;
+    case 'get_lme_prices': getMasterData($masterDbFile, 'lme_prices'); break;
+    case 'add_lme_price': addLmePrice($masterDbFile); break;
+    case 'get_customer_groups': getMasterData($masterDbFile, 'customer_groups'); break;
+    case 'add_customer_group': addCustomerGroup($masterDbFile); break;
+    case 'get_fab_costs': getMasterData($masterDbFile, 'fab_costs'); break;
+    case 'add_fab_cost': addFabCost($masterDbFile); break;
+    case 'get_standard_prices': getMasterData($masterDbFile, 'standard_prices'); break;
+    case 'add_standard_price': addStandardPrice($masterDbFile); break;
+    case 'get_selling_factors': getMasterData($masterDbFile, 'selling_factors'); break;
+    case 'add_selling_factor': addSellingFactor($masterDbFile); break;
+    case 'get_exchange_rates': getMasterData($masterDbFile, 'exchange_rates'); break;
+    case 'add_exchange_rate': addExchangeRate($masterDbFile); break;
 
     default:
         echo json_encode(['success' => false, 'message' => 'Invalid API action']);
         break;
+}
+
+// --- Generic Master Data Getter ---
+function getMasterData($file, $key) {
+    $masterData = readDb($file);
+    echo json_encode(['success' => true, 'data' => $masterData[$key] ?? []]);
 }
 
 // --- Request Functions ---
@@ -214,11 +206,6 @@ function calculatePrice() {
 }
 
 // --- Master Data Functions ---
-function getLmePrices($file) {
-    $masterData = readDb($file);
-    echo json_encode(['success' => true, 'data' => $masterData['lme_prices'] ?? []]);
-}
-
 function addLmePrice($file) {
     $input = json_decode(file_get_contents('php://input'), true);
     if (empty($input['customer_group']) || empty($input['item_group_code']) || empty($input['price'])) {
@@ -240,11 +227,6 @@ function addLmePrice($file) {
     echo json_encode(['success' => true, 'message' => 'LME price added successfully.', 'data' => $newPrice]);
 }
 
-function getCustomerGroups($file) {
-    $masterData = readDb($file);
-    echo json_encode(['success' => true, 'data' => $masterData['customer_groups'] ?? []]);
-}
-
 function addCustomerGroup($file) {
     $input = json_decode(file_get_contents('php://input'), true);
      if (empty($input['id']) || empty($input['name'])) {
@@ -262,5 +244,63 @@ function addCustomerGroup($file) {
     $masterData['customer_groups'][] = $newGroup;
     writeDb($file, $masterData);
     echo json_encode(['success' => true, 'message' => 'Customer group added successfully.', 'data' => $newGroup]);
+}
+
+function addFabCost($file) {
+    $input = json_decode(file_get_contents('php://input'), true);
+    $masterData = readDb($file);
+    $newItem = [
+        'id' => count($masterData['fab_costs'] ?? []) + 1,
+        'work_type' => $input['work_type'],
+        'cost' => (float)$input['cost'],
+        'unit' => $input['unit'],
+        'description' => $input['description'] ?? ''
+    ];
+    $masterData['fab_costs'][] = $newItem;
+    writeDb($file, $masterData);
+    echo json_encode(['success' => true, 'message' => 'Fab cost added.', 'data' => $newItem]);
+}
+
+function addStandardPrice($file) {
+    $input = json_decode(file_get_contents('php://input'), true);
+    $masterData = readDb($file);
+    $newItem = [
+        'id' => count($masterData['standard_prices'] ?? []) + 1,
+        'rm_code' => $input['rm_code'],
+        'rm_name' => $input['rm_name'],
+        'price' => (float)$input['price'],
+        'unit' => $input['unit']
+    ];
+    $masterData['standard_prices'][] = $newItem;
+    writeDb($file, $masterData);
+    echo json_encode(['success' => true, 'message' => 'Standard price added.', 'data' => $newItem]);
+}
+
+function addSellingFactor($file) {
+    $input = json_decode(file_get_contents('php://input'), true);
+    $masterData = readDb($file);
+    $newItem = [
+        'id' => count($masterData['selling_factors'] ?? []) + 1,
+        'pattern' => $input['pattern'],
+        'factor' => (float)$input['factor'],
+        'description' => $input['description'] ?? ''
+    ];
+    $masterData['selling_factors'][] = $newItem;
+    writeDb($file, $masterData);
+    echo json_encode(['success' => true, 'message' => 'Selling factor added.', 'data' => $newItem]);
+}
+
+function addExchangeRate($file) {
+    $input = json_decode(file_get_contents('php://input'), true);
+    $masterData = readDb($file);
+    $newItem = [
+        'id' => count($masterData['exchange_rates'] ?? []) + 1,
+        'currency_pair' => $input['currency_pair'],
+        'rate' => (float)$input['rate'],
+        'updated_at' => date('d/m/Y H:i')
+    ];
+    $masterData['exchange_rates'][] = $newItem;
+    writeDb($file, $masterData);
+    echo json_encode(['success' => true, 'message' => 'Exchange rate added.', 'data' => $newItem]);
 }
 ?>

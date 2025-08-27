@@ -42,11 +42,16 @@ function showMasterTab(tabName) {
     currentMasterTab = tabName;
 
     // Load data for the selected master tab
-    if (tabName === 'lme-prices') {
-        loadLmePrices();
-        loadCustomerGroupsForDropdown(); // Also load groups for the dropdown
-    } else if (tabName === 'customer-groups') {
-        loadCustomerGroups();
+    const loadFunctions = {
+        'lme-prices': () => { loadLmePrices(); loadCustomerGroupsForDropdown(); },
+        'customer-groups': loadCustomerGroups,
+        'fab-cost': loadFabCosts,
+        'std-prices': loadStandardPrices,
+        'factors': loadSellingFactors,
+        'exchange': loadExchangeRates,
+    };
+    if (loadFunctions[tabName]) {
+        loadFunctions[tabName]();
     }
 }
 
