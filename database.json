@@ -1,0 +1,86 @@
+[
+    {
+        "requestId": "REQ-202508-0012",
+        "customerId": "CUST-001",
+        "customerName": "บริษัท ABC จำกัด",
+        "productType": "existing",
+        "fgCode": "FG-001",
+        "productDescription": "",
+        "quantity": 200,
+        "productIdentifier": "FG-001",
+        "status": "Quoted",
+        "createdAt": "27\/08\/2568 10:30",
+        "boq": [
+            {
+                "rmCode": "RM-STEEL-01",
+                "quantity": 2.5
+            },
+            {
+                "rmCode": "RM-SCREW-M6",
+                "quantity": 8
+            }
+        ]
+    },
+    {
+        "requestId": "REQ-202508-0011",
+        "customerId": "CUST-002",
+        "customerName": "บริษัท XYZ จำกัด",
+        "productType": "existing",
+        "fgCode": "FG-008",
+        "productDescription": "",
+        "quantity": 550,
+        "productIdentifier": "FG-008",
+        "status": "Calculated",
+        "createdAt": "27\/08\/2568 09:15",
+        "boq": []
+    },
+    {
+        "requestId": "REQ-202508-0010",
+        "customerId": "CUST-003",
+        "customerName": "บริษัท 123 Trading",
+        "productType": "new",
+        "fgCode": "",
+        "productDescription": "เพลทเหล็กหนา 5mm สำหรับงาน Outdoor",
+        "quantity": 50,
+        "productIdentifier": "สินค้าใหม่: เพลทเหล็กหนา 5mm",
+        "status": "Pending",
+        "createdAt": "26\/08\/2568 16:45",
+        "boq": [
+            {
+                "rmCode": "RM-STEEL-01",
+                "quantity": 5
+            }
+        ]
+    },
+    {
+        "requestId": "REQ-202508-0009",
+        "customerId": "CUST-004",
+        "customerName": "บริษัท DEF จำกัด",
+        "productType": "existing",
+        "fgCode": "FG-002",
+        "productDescription": "",
+        "quantity": 1200,
+        "productIdentifier": "FG-002",
+        "status": "Rejected",
+        "createdAt": "26\/08\/2568 14:20",
+        "boq": []
+    },
+    {
+        "requestId": "REQ-20250827-105",
+        "customerId": "11111",
+        "customerName": "ลูกค้า (ใหม่)",
+        "productType": "new",
+        "fgCode": "",
+        "productDescription": "",
+        "quantity": "",
+        "productIdentifier": "สินค้าใหม่: ",
+        "status": "Pending",
+        "createdAt": "27\/08\/2025 08:41",
+        "boq": [
+            {
+                "rmCode": "RM-STEEL-01",
+                "quantity": 1
+            }
+        ]
+    }
+]

@@ -1,0 +1,57 @@
+{
+  "lme_prices": [
+    {
+      "id": 1,
+      "customer_group": "กลุ่ม A",
+      "item_group_code": "COPPER",
+      "commodity": "Copper",
+      "price": 8245.5,
+      "updated_at": "27/08/2568 09:30"
+    },
+    {
+      "id": 2,
+      "customer_group": "กลุ่ม B",
+      "item_group_code": "ALUMINUM",
+      "commodity": "Aluminum",
+      "price": 2156.75,
+      "updated_at": "27/08/2568 09:30"
+    }
+  ],
+  "customer_groups": [
+    {
+      "id": "GROUP_A",
+      "name": "กลุ่ม A",
+      "description": "ลูกค้าเกรด Premium",
+      "customers": [
+        { "id": "CUST-001", "name": "บริษัท ABC จำกัด" },
+        { "id": "CUST-005", "name": "บริษัท Premium Auto Part" }
+      ]
+    },
+    {
+      "id": "GROUP_B",
+      "name": "กลุ่ม B",
+      "description": "ลูกค้าทั่วไป",
+      "customers": [
+        { "id": "CUST-002", "name": "บริษัท XYZ จำกัด" },
+        { "id": "CUST-003", "name": "บริษัท 123 Trading" }
+      ]
+    },
+    {
+      "id": "GROUP_C",
+      "name": "กลุ่ม C",
+      "description": "ลูกค้า Project",
+      "customers": []
+    }
+  ],
+  "customers": [
+    { "id": "CUST-001", "name": "บริษัท ABC จำกัด" },
+    { "id": "CUST-002", "name": "บริษัท XYZ จำกัด" },
+    { "id": "CUST-003", "name": "บริษัท 123 Trading" },
+    { "id": "CUST-004", "name": "บริษัท DEF จำกัด" },
+    { "id": "CUST-005", "name": "บริษัท Premium Auto Part" }
+  ],
+  "fab_costs": [],
+  "standard_prices": [],
+  "selling_factors": [],
+  "exchange_rates": []
+}
